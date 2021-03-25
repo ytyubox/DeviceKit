@@ -16,6 +16,11 @@ class DeviceKitTests: XCTestCase {
 
   let device = Device.current
 
+  #if os(macOS)
+  func testDeviceIsKnown() {
+    XCTAssertTrue(device.isOneOf(Device.allMacs), "device: \(device)")
+  }
+  #else
   func testDeviceSimulator() {
     XCTAssertTrue(device.isOneOf(Device.allSimulators))
   }
@@ -27,6 +32,7 @@ class DeviceKitTests: XCTestCase {
       || device.description.contains("iPod")
       || device.description.contains("TV"))
   }
+  #endif
 
   // MARK: - iOS
   #if os(iOS)
@@ -154,7 +160,6 @@ class DeviceKitTests: XCTestCase {
     XCTAssertTrue(Device.iPhone7.screenRatio == (width: 9, height: 16))
     XCTAssertTrue(Device.iPhone7Plus.screenRatio == (width: 9, height: 16))
     XCTAssertTrue(Device.iPhoneSE.screenRatio == (width: 9, height: 16))
-    XCTAssertTrue(Device.iPhoneSE2.screenRatio == (width: 9, height: 16))
     XCTAssertTrue(Device.iPhone8.screenRatio == (width: 9, height: 16))
     XCTAssertTrue(Device.iPhone8Plus.screenRatio == (width: 9, height: 16))
     XCTAssertTrue(Device.iPhoneX.screenRatio == (width: 9, height: 19.5))
@@ -276,17 +281,6 @@ class DeviceKitTests: XCTestCase {
     XCTAssertEqual(Device.unknown(uuid).description, uuid)
   }
 
-  func testSafeDescription() {
-    for device in Device.allRealDevices {
-      switch device {
-      case .iPhoneXR, .iPhoneXS, .iPhoneXSMax:
-        XCTAssertNotEqual(device.description, device.safeDescription)
-      default:
-        XCTAssertEqual(device.description, device.safeDescription)
-      }
-    }
-  }
-
   func testIsPad() {
     Device.allPads.forEach { XCTAssertTrue($0.isPad) }
   }
@@ -310,7 +304,6 @@ class DeviceKitTests: XCTestCase {
     assertEqualDeviceAndSimulator(device: Device.iPhone7,         property: \Device.ppi, value: 326)
     assertEqualDeviceAndSimulator(device: Device.iPhone7Plus,     property: \Device.ppi, value: 401)
     assertEqualDeviceAndSimulator(device: Device.iPhoneSE,        property: \Device.ppi, value: 326)
-    assertEqualDeviceAndSimulator(device: Device.iPhoneSE2,       property: \Device.ppi, value: 326)
     assertEqualDeviceAndSimulator(device: Device.iPhone8,         property: \Device.ppi, value: 326)
     assertEqualDeviceAndSimulator(device: Device.iPhone8Plus,     property: \Device.ppi, value: 401)
     assertEqualDeviceAndSimulator(device: Device.iPhoneX,         property: \Device.ppi, value: 458)
@@ -349,7 +342,7 @@ class DeviceKitTests: XCTestCase {
   }
 
   func testIsPlusSized() {
-    XCTAssertEqual(Device.allPlusSizedDevices, [.iPhone6Plus, .iPhone6sPlus, .iPhone7Plus, .iPhone8Plus, .iPhoneXSMax, .iPhone11ProMax, .iPhone12ProMax])
+    XCTAssertEqual(Device.allPlusSizedDevices, [.iPhone6Plus, .iPhone6sPlus, .iPhone7Plus, .iPhone8Plus, .iPhoneXSMax, .iPhone11ProMax])
   }
 
   func testIsPro() {
@@ -400,25 +393,23 @@ class DeviceKitTests: XCTestCase {
 
   func testCameras() {
     for device in Device.allDevicesWithCamera {
-      XCTAssertTrue(device.cameras.contains(.wide) || device.cameras.contains(.telephoto) || device.cameras.contains(.ultraWide))
+      XCTAssertTrue(device.cameras.contains(.normal) || device.cameras.contains(.telephoto))
       XCTAssertTrue(device.hasCamera)
-      XCTAssertTrue(device.hasWideCamera || device.hasTelephotoCamera || device.hasUltraWideCamera)
+      XCTAssertTrue(device.hasNormalCamera || device.hasTelephotoCamera)
     }
     for device in Device.allPhones + Device.allPads + Device.allPods {
       if !Device.allDevicesWithCamera.contains(device) {
-        XCTAssertFalse(device.cameras.contains(.wide))
+        XCTAssertFalse(device.cameras.contains(.normal))
         XCTAssertFalse(device.cameras.contains(.telephoto))
-        XCTAssertFalse(device.cameras.contains(.ultraWide))
         XCTAssertFalse(device.hasCamera)
-        XCTAssertFalse(device.hasWideCamera)
+        XCTAssertFalse(device.hasNormalCamera)
         XCTAssertFalse(device.hasTelephotoCamera)
-        XCTAssertFalse(device.hasUltraWideCamera)
       }
     }
-    for device in Device.allDevicesWithWideCamera {
-      XCTAssertTrue(device.cameras.contains(.wide))
+    for device in Device.allDevicesWithNormalCamera {
+      XCTAssertTrue(device.cameras.contains(.normal))
       XCTAssertTrue(device.hasCamera)
-      XCTAssertTrue(device.hasWideCamera)
+      XCTAssertTrue(device.hasNormalCamera)
     }
     for device in Device.allDevicesWithTelephotoCamera {
       XCTAssertTrue(device.cameras.contains(.telephoto))
@@ -450,12 +441,6 @@ class DeviceKitTests: XCTestCase {
   func testDescriptionFromIdentifier() {
     XCTAssertEqual(Device.mapToDevice(identifier: "AppleTV5,3").description, "Apple TV HD")
     XCTAssertEqual(Device.mapToDevice(identifier: "AppleTV6,2").description, "Apple TV 4K")
-  }
-
-  func testSafeDescription() {
-    for device in Device.allRealDevices {
-      XCTAssertEqual(device.description, device.safeDescription)
-    }
   }
 
   /// Test that all the ppi values for applicable devices match the public information available at wikipedia. Test non-applicable devices return nil.

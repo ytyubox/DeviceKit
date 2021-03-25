@@ -11,7 +11,7 @@
 
 %{
 class Device:
-  def __init__(self, caseName, comment, imageURL, identifiers, diagonal, screenRatio, description, safeDescription, ppi, isPlusFormFactor, isPadMiniFormFactor, isPro, isXSeries, hasTouchID, hasFaceID, hasSensorHousing, supportsWirelessCharging, hasRoundedDisplayCorners, applePencilSupport, hasForce3dTouchSupport, cameras, hasLidarSensor):
+  def __init__(self, caseName, comment, imageURL, identifiers, diagonal, screenRatio, description, ppi, isPlusFormFactor, isPadMiniFormFactor, isPro, isXSeries, hasTouchID, hasFaceID, hasSensorHousing, supportsWirelessCharging, hasRoundedDisplayCorners, applePencilSupport, hasForce3dTouchSupport, cameras):
     self.caseName = caseName
     self.comment = comment
     self.imageURL = imageURL
@@ -19,7 +19,6 @@ class Device:
     self.diagonal = diagonal
     self.screenRatio = screenRatio
     self.description = description
-    self.safeDescription = safeDescription
     self.ppi = ppi
     self.isPlusFormFactor = isPlusFormFactor
     self.isPadMiniFormFactor = isPadMiniFormFactor
@@ -33,78 +32,68 @@ class Device:
     self.applePencilSupport = applePencilSupport
     self.hasForce3dTouchSupport = hasForce3dTouchSupport
     self.cameras = cameras
-    self.hasLidarSensor = hasLidarSensor
 
 # iOS
 iPods = [
-            Device("iPodTouch5",     "Device is an [iPod touch (5th generation)](https://support.apple.com/kb/SP657)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP657/sp657_ipod-touch_size.jpg",                      ["iPod5,1"],                                  4,    (9, 16),    "iPod touch (5th generation)", "iPod touch (5th generation)", 326, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPodTouch6",     "Device is an [iPod touch (6th generation)](https://support.apple.com/kb/SP720)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP720/SP720-ipod-touch-specs-color-sg-2015.jpg",       ["iPod7,1"],                                  4,    (9, 16),    "iPod touch (6th generation)", "iPod touch (6th generation)", 326, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPodTouch7",     "Device is an [iPod touch (7th generation)](https://support.apple.com/kb/SP796)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP796/ipod-touch-7th-gen_2x.png",                      ["iPod9,1"],                                  4,    (9, 16),    "iPod touch (7th generation)", "iPod touch (7th generation)", 326, False, False, False, False, False, False, False, False, False, 0, False, 1, False)
+            Device("iPodTouch5",     "Device is an [iPod touch (5th generation)](https://support.apple.com/kb/SP657)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP657/sp657_ipod-touch_size.jpg",                      ["iPod5,1"],                                  4,    (9, 16),    "iPod touch (5th generation)", 326, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPodTouch6",     "Device is an [iPod touch (6th generation)](https://support.apple.com/kb/SP720)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP720/SP720-ipod-touch-specs-color-sg-2015.jpg",       ["iPod7,1"],                                  4,    (9, 16),    "iPod touch (6th generation)", 326, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPodTouch7",     "Device is an [iPod touch (7th generation)](https://support.apple.com/kb/SP796)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP796/ipod-touch-7th-gen_2x.png",                      ["iPod9,1"],                                  4,    (9, 16),    "iPod touch (7th generation)", 326, False, False, False, False, False, False, False, False, False, 0, False, 1)
         ]
 
 iPhones = [
-            Device("iPhone4",        "Device is an [iPhone 4](https://support.apple.com/kb/SP587)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP643/sp643_iphone4s_color_black.jpg",                 ["iPhone3,1", "iPhone3,2", "iPhone3,3"],      3.5,  (2, 3),     "iPhone 4", "iPhone 4", 326, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPhone4s",       "Device is an [iPhone 4s](https://support.apple.com/kb/SP643)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP643/sp643_iphone4s_color_black.jpg",                 ["iPhone4,1"],                                3.5,  (2, 3),     "iPhone 4s", "iPhone 4s", 326, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPhone5",        "Device is an [iPhone 5](https://support.apple.com/kb/SP655)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP655/sp655_iphone5_color.jpg",                        ["iPhone5,1", "iPhone5,2"],                   4,    (9, 16),    "iPhone 5", "iPhone 5", 326, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPhone5c",       "Device is an [iPhone 5c](https://support.apple.com/kb/SP684)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP684/SP684-color_yellow.jpg",                         ["iPhone5,3", "iPhone5,4"],                   4,    (9, 16),    "iPhone 5c", "iPhone 5c", 326, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPhone5s",       "Device is an [iPhone 5s](https://support.apple.com/kb/SP685)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP685/SP685-color_black.jpg",                          ["iPhone6,1", "iPhone6,2"],                   4,    (9, 16),    "iPhone 5s", "iPhone 5s", 326, False, False, False, False, True, False, False, False, False, 0, False, 1, False),
-            Device("iPhone6",        "Device is an [iPhone 6](https://support.apple.com/kb/SP705)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP705/SP705-iphone_6-mul.png",                         ["iPhone7,2"],                                4.7,  (9, 16),    "iPhone 6", "iPhone 6", 326, False, False, False, False, True, False, False, False, False, 0, False, 1, False),
-            Device("iPhone6Plus",    "Device is an [iPhone 6 Plus](https://support.apple.com/kb/SP706)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP706/SP706-iphone_6_plus-mul.png",                    ["iPhone7,1"],                                5.5,  (9, 16),    "iPhone 6 Plus", "iPhone 6 Plus", 401, True, False, False, False, True, False, False, False, False, 0, False, 1, False),
-            Device("iPhone6s",       "Device is an [iPhone 6s](https://support.apple.com/kb/SP726)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP726/SP726-iphone6s-gray-select-2015.png",            ["iPhone8,1"],                                4.7,  (9, 16),    "iPhone 6s", "iPhone 6s", 326, False, False, False, False, True, False, False, False, False, 0, True, 1, False),
-            Device("iPhone6sPlus",   "Device is an [iPhone 6s Plus](https://support.apple.com/kb/SP727)",              "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP727/SP727-iphone6s-plus-gray-select-2015.png",       ["iPhone8,2"],                                5.5,  (9, 16),    "iPhone 6s Plus", "iPhone 6s Plus", 401, True, False, False, False, True, False, False, False, False, 0, True, 1, False),
-            Device("iPhone7",        "Device is an [iPhone 7](https://support.apple.com/kb/SP743)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP743/iphone7-black.png",                              ["iPhone9,1", "iPhone9,3"],                   4.7,  (9, 16),    "iPhone 7", "iPhone 7", 326, False, False, False, False, True, False, False, False, False, 0, True, 1, False),
-            Device("iPhone7Plus",    "Device is an [iPhone 7 Plus](https://support.apple.com/kb/SP744)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP744/iphone7-plus-black.png",                         ["iPhone9,2", "iPhone9,4"],                   5.5,  (9, 16),    "iPhone 7 Plus", "iPhone 7 Plus", 401, True, False, False, False, True, False, False, False, False, 0, True, 12, False),
-            Device("iPhoneSE",       "Device is an [iPhone SE](https://support.apple.com/kb/SP738)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP738/SP738.png",                                      ["iPhone8,4"],                                4,    (9, 16),    "iPhone SE", "iPhone SE", 326, False, False, False, False, True, False, False, False, False, 0, False, 1, False),
-            Device("iPhone8",        "Device is an [iPhone 8](https://support.apple.com/kb/SP767)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP767/iphone8.png",                                    ["iPhone10,1", "iPhone10,4"],                 4.7,  (9, 16),    "iPhone 8", "iPhone 8", 326, False, False, False, False, True, False, False, True, False, 0, True, 1, False),
-            Device("iPhone8Plus",    "Device is an [iPhone 8 Plus](https://support.apple.com/kb/SP768)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP768/iphone8plus.png",                                ["iPhone10,2", "iPhone10,5"],                 5.5,  (9, 16),    "iPhone 8 Plus", "iPhone 8 Plus", 401, True, False, False, False, True, False, False, True, False, 0, True, 12, False),
-            Device("iPhoneX",        "Device is an [iPhone X](https://support.apple.com/kb/SP770)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP770/iphonex.png",                                    ["iPhone10,3", "iPhone10,6"],                 5.8,  (9, 19.5),  "iPhone X", "iPhone X", 458, False, False, False, True, False, True, True, True, True, 0, True, 12, False),
-            Device("iPhoneXS",       "Device is an [iPhone Xs](https://support.apple.com/kb/SP779)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP779/SP779-iphone-xs.jpg",                            ["iPhone11,2"],                               5.8,  (9, 19.5),  "iPhone Xs", "iPhone XS", 458, False, False, False, True, False, True, True, True, True, 0, True, 12, False),
-            Device("iPhoneXSMax",    "Device is an [iPhone Xs Max](https://support.apple.com/kb/SP780)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP780/SP780-iPhone-Xs-Max.jpg",                        ["iPhone11,4", "iPhone11,6"],                 6.5,  (9, 19.5),  "iPhone Xs Max", "iPhone XS Max", 458, True, False, False, True, False, True, True, True, True, 0, True, 12, False),
-            Device("iPhoneXR",       "Device is an [iPhone Xʀ](https://support.apple.com/kb/SP781)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP781/SP781-iPhone-xr.jpg",                            ["iPhone11,8"],                               6.1,  (9, 19.5),  "iPhone Xʀ", "iPhone XR", 326, False, False, False, True, False, True, True, True, True, 0, False, 1, False),
-            Device("iPhone11",       "Device is an [iPhone 11](https://support.apple.com/kb/SP804)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP804/sp804-iphone11_2x.png",                          ["iPhone12,1"],                               6.1,  (9, 19.5),  "iPhone 11", "iPhone 11", 326, False, False, False, True, False, True, True, True, True, 0, False, 13, False),
-            Device("iPhone11Pro",    "Device is an [iPhone 11 Pro](https://support.apple.com/kb/SP805)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP805/sp805-iphone11pro_2x.png",                       ["iPhone12,3"],                               5.8,  (9, 19.5),  "iPhone 11 Pro", "iPhone 11 Pro", 458, False, False, True, True, False, True, True, True, True, 0, False, 123, False),
-            Device("iPhone11ProMax", "Device is an [iPhone 11 Pro Max](https://support.apple.com/kb/SP806)",           "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP806/sp806-iphone11pro-max_2x.png",                   ["iPhone12,5"],                               6.5,  (9, 19.5),  "iPhone 11 Pro Max", "iPhone 11 Pro Max", 458, True, False, True, True, False, True, True, True, True, 0, False, 123, False),
-            Device("iPhoneSE2",      "Device is an [iPhone SE (2nd generation)](https://support.apple.com/kb/SP820)",  "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP820/iphone-se-2nd-gen_2x.png",                       ["iPhone12,8"],                               4.7,  (9, 16),    "iPhone SE (2nd generation)", "iPhone SE (2nd generation)", 326, False, False, False, False, True, False, False, True, False, 0, False, 1, False),
-            Device("iPhone12",       "Device is an [iPhone 12](https://support.apple.com/kb/SP830)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP830/sp830-iphone12-ios14_2x.png",                    ["iPhone13,2"],                               6.1,  (9, 19.5),  "iPhone 12", "iPhone 12", 460, False, False, False, True, False, True, True, True, True, 0, False, 13, False),
-            Device("iPhone12Mini",   "Device is an [iPhone 12 mini](https://support.apple.com/kb/SP829)",              "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP829/sp829-iphone12mini-ios14_2x.png",                ["iPhone13,1"],                               5.4,  (9, 19.5),  "iPhone 12 mini", "iPhone 12 mini", 476, False, False, False, True, False, True, True, True, True, 0, False, 13, False),
-            Device("iPhone12Pro",    "Device is an [iPhone 12 Pro](https://support.apple.com/kb/SP831)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP831/iphone12pro-ios14_2x.png",                       ["iPhone13,3"],                               6.1,  (9, 19.5),  "iPhone 12 Pro", "iPhone 12 Pro", 460, False, False, True, True, False, True, True, True, True, 0, False, 123, True),
-            Device("iPhone12ProMax", "Device is an [iPhone 12 Pro Max](https://support.apple.com/kb/SP832)",           "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP832/iphone12promax-ios14_2x.png",                    ["iPhone13,4"],                               6.7,  (9, 19.5),  "iPhone 12 Pro Max", "iPhone 12 Pro Max", 458, True, False, True, True, False, True, True, True, True, 0, False, 123, True)
+            Device("iPhone4",        "Device is an [iPhone 4](https://support.apple.com/kb/SP587)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP643/sp643_iphone4s_color_black.jpg",                 ["iPhone3,1", "iPhone3,2", "iPhone3,3"],      3.5,  (2, 3),     "iPhone 4", 326, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPhone4s",       "Device is an [iPhone 4s](https://support.apple.com/kb/SP643)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP643/sp643_iphone4s_color_black.jpg",                 ["iPhone4,1"],                                3.5,  (2, 3),     "iPhone 4s", 326, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPhone5",        "Device is an [iPhone 5](https://support.apple.com/kb/SP655)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP655/sp655_iphone5_color.jpg",                        ["iPhone5,1", "iPhone5,2"],                   4,    (9, 16),    "iPhone 5", 326, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPhone5c",       "Device is an [iPhone 5c](https://support.apple.com/kb/SP684)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP684/SP684-color_yellow.jpg",                         ["iPhone5,3", "iPhone5,4"],                   4,    (9, 16),    "iPhone 5c", 326, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPhone5s",       "Device is an [iPhone 5s](https://support.apple.com/kb/SP685)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP685/SP685-color_black.jpg",                          ["iPhone6,1", "iPhone6,2"],                   4,    (9, 16),    "iPhone 5s", 326, False, False, False, False, True, False, False, False, False, 0, False, 1),
+            Device("iPhone6",        "Device is an [iPhone 6](https://support.apple.com/kb/SP705)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP705/SP705-iphone_6-mul.png",                         ["iPhone7,2"],                                4.7,  (9, 16),    "iPhone 6", 326, False, False, False, False, True, False, False, False, False, 0, False, 1),
+            Device("iPhone6Plus",    "Device is an [iPhone 6 Plus](https://support.apple.com/kb/SP706)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP706/SP706-iphone_6_plus-mul.png",                    ["iPhone7,1"],                                5.5,  (9, 16),    "iPhone 6 Plus", 401, True, False, False, False, True, False, False, False, False, 0, False, 1),
+            Device("iPhone6s",       "Device is an [iPhone 6s](https://support.apple.com/kb/SP726)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP726/SP726-iphone6s-gray-select-2015.png",            ["iPhone8,1"],                                4.7,  (9, 16),    "iPhone 6s", 326, False, False, False, False, True, False, False, False, False, 0, True, 1),
+            Device("iPhone6sPlus",   "Device is an [iPhone 6s Plus](https://support.apple.com/kb/SP727)",              "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP727/SP727-iphone6s-plus-gray-select-2015.png",       ["iPhone8,2"],                                5.5,  (9, 16),    "iPhone 6s Plus", 401, True, False, False, False, True, False, False, False, False, 0, True, 1),
+            Device("iPhone7",        "Device is an [iPhone 7](https://support.apple.com/kb/SP743)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP743/iphone7-black.png",                              ["iPhone9,1", "iPhone9,3"],                   4.7,  (9, 16),    "iPhone 7", 326, False, False, False, False, True, False, False, False, False, 0, True, 1),
+            Device("iPhone7Plus",    "Device is an [iPhone 7 Plus](https://support.apple.com/kb/SP744)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP744/iphone7-plus-black.png",                         ["iPhone9,2", "iPhone9,4"],                   5.5,  (9, 16),    "iPhone 7 Plus", 401, True, False, False, False, True, False, False, False, False, 0, True, 12),
+            Device("iPhoneSE",       "Device is an [iPhone SE](https://support.apple.com/kb/SP738)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP738/SP738.png",                                      ["iPhone8,4"],                                4,    (9, 16),    "iPhone SE", 326, False, False, False, False, True, False, False, False, False, 0, True, 1),
+            Device("iPhone8",        "Device is an [iPhone 8](https://support.apple.com/kb/SP767)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP767/iphone8.png",                                    ["iPhone10,1", "iPhone10,4"],                 4.7,  (9, 16),    "iPhone 8", 326, False, False, False, False, True, False, False, True, False, 0, True, 1),
+            Device("iPhone8Plus",    "Device is an [iPhone 8 Plus](https://support.apple.com/kb/SP768)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP768/iphone8plus.png",                                ["iPhone10,2", "iPhone10,5"],                 5.5,  (9, 16),    "iPhone 8 Plus", 401, True, False, False, False, True, False, False, True, False, 0, True, 12),
+            Device("iPhoneX",        "Device is an [iPhone X](https://support.apple.com/kb/SP770)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP770/iphonex.png",                                    ["iPhone10,3", "iPhone10,6"],                 5.8,  (9, 19.5),  "iPhone X", 458, False, False, False, True, False, True, True, True, True, 0, True, 12),
+            Device("iPhoneXS",       "Device is an [iPhone Xs](https://support.apple.com/kb/SP779)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP779/SP779-iphone-xs.jpg",                            ["iPhone11,2"],                               5.8,  (9, 19.5),  "iPhone Xs", 458, False, False, False, True, False, True, True, True, True, 0, True, 12),
+            Device("iPhoneXSMax",    "Device is an [iPhone Xs Max](https://support.apple.com/kb/SP780)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP780/SP780-iPhone-Xs-Max.jpg",                        ["iPhone11,4", "iPhone11,6"],                 6.5,  (9, 19.5),  "iPhone Xs Max", 458, True, False, False, True, False, True, True, True, True, 0, True, 12),
+            Device("iPhoneXR",       "Device is an [iPhone Xʀ](https://support.apple.com/kb/SP781)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP781/SP781-iPhone-xr.jpg",                            ["iPhone11,8"],                               6.1,  (9, 19.5),  "iPhone Xʀ", 326, False, False, False, True, False, True, True, True, True, 0, False, 1),
+            Device("iPhone11",       "Device is an [iPhone 11](https://support.apple.com/kb/SP804)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP804/sp804-iphone11_2x.png",                          ["iPhone12,1"],                               6.1,  (9, 19.5),  "iPhone 11", 326, False, False, False, True, False, True, True, True, True, 0, False, 13),
+            Device("iPhone11Pro",    "Device is an [iPhone 11 Pro](https://support.apple.com/kb/SP805)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP805/sp805-iphone11pro_2x.png",                       ["iPhone12,3"],                               5.8,  (9, 19.5),  "iPhone 11 Pro", 458, False, False, True, True, False, True, True, True, True, 0, False, 123),
+            Device("iPhone11ProMax", "Device is an [iPhone 11 Pro Max](https://support.apple.com/kb/SP806)",           "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP806/sp806-iphone11pro-max_2x.png",                   ["iPhone12,5"],                               6.5,  (9, 19.5),  "iPhone 11 Pro Max", 458, True, False, True, True, False, True, True, True, True, 0, False, 123)
           ]
 
 iPads = [
-            Device("iPad2",          "Device is an [iPad 2](https://support.apple.com/kb/SP622)",                              "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP622/SP622_01-ipad2-mul.png",                 ["iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4"], 9.7,  (3, 4),     "iPad 2", "iPad 2", 132, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPad3",          "Device is an [iPad (3rd generation)](https://support.apple.com/kb/SP647)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP662/sp662_ipad-4th-gen_color.jpg",           ["iPad3,1", "iPad3,2", "iPad3,3"],            9.7,  (3, 4),     "iPad (3rd generation)", "iPad (3rd generation)", 264, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPad4",          "Device is an [iPad (4th generation)](https://support.apple.com/kb/SP662)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP662/sp662_ipad-4th-gen_color.jpg",           ["iPad3,4", "iPad3,5", "iPad3,6"],            9.7,  (3, 4),     "iPad (4th generation)", "iPad (4th generation)", 264, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPadAir",        "Device is an [iPad Air](https://support.apple.com/kb/SP692)",                            "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP692/SP692-specs_color-mul.png",              ["iPad4,1", "iPad4,2", "iPad4,3"],            9.7,  (3, 4),     "iPad Air", "iPad Air", 264, False, False, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPadAir2",       "Device is an [iPad Air 2](https://support.apple.com/kb/SP708)",                          "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP708/SP708-space_gray.jpeg",                  ["iPad5,3", "iPad5,4"],                       9.7,  (3, 4),     "iPad Air 2", "iPad Air 2", 264, False, False, False, False, True, False, False, False, False, 0, False, 1, False),
-            Device("iPad5",          "Device is an [iPad (5th generation)](https://support.apple.com/kb/SP751)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP751/ipad_5th_generation.png",                ["iPad6,11", "iPad6,12"],                     9.7,  (3, 4),     "iPad (5th generation)", "iPad (5th generation)", 264, False, False, False, False, True, False, False, False, False, 0, False, 1, False),
-            Device("iPad6",          "Device is an [iPad (6th generation)](https://support.apple.com/kb/SP774)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP774/sp774-ipad-6-gen_2x.png",                ["iPad7,5", "iPad7,6"],                       9.7,  (3, 4),     "iPad (6th generation)", "iPad (6th generation)", 264, False, False, False, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPadAir3",       "Device is an [iPad Air (3rd generation)](https://support.apple.com/kb/SP787)",           "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP787/ipad-air-2019.jpg",                      ["iPad11,3", "iPad11,4"],                     10.5, (3, 4),     "iPad Air (3rd generation)", "iPad Air (3rd generation)", 264, False, False, False, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPad7",          "Device is an [iPad (7th generation)](https://support.apple.com/kb/SP807)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP807/sp807-ipad-7th-gen_2x.png",              ["iPad7,11", "iPad7,12"],                     10.2, (3, 4),     "iPad (7th generation)", "iPad (7th generation)", 264, False, False, False, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPad8",          "Device is an [iPad (8th generation)](https://support.apple.com/kb/SP822)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP822/sp822-ipad-8gen_2x.png",                 ["iPad11,6", "iPad11,7"],                     10.2, (3, 4),     "iPad (8th generation)", "iPad (8th generation)", 264, False, False, False, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPadAir4",       "Device is an [iPad Air (4th generation)](https://support.apple.com/kb/SP828)",           "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP828/sp828ipad-air-ipados14-960_2x.png",      ["iPad13,1", "iPad13,2"],                     10.9, (41, 59),   "iPad Air (4th generation)", "iPad Air (4th generation)", 264, False, False, False, False, True, False, False, False, True, 2, False, 1, False),
-            Device("iPadMini",       "Device is an [iPad Mini](https://support.apple.com/kb/SP661)",                           "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP661/sp661_ipad_mini_color.jpg",              ["iPad2,5", "iPad2,6", "iPad2,7"],            7.9,  (3, 4),     "iPad Mini", "iPad Mini", 163, False, True, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPadMini2",      "Device is an [iPad Mini 2](https://support.apple.com/kb/SP693)",                         "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP693/SP693-specs_color-mul.png",              ["iPad4,4", "iPad4,5", "iPad4,6"],            7.9,  (3, 4),     "iPad Mini 2", "iPad Mini 2", 326, False, True, False, False, False, False, False, False, False, 0, False, 1, False),
-            Device("iPadMini3",      "Device is an [iPad Mini 3](https://support.apple.com/kb/SP709)",                         "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP709/SP709-space_gray.jpeg",                  ["iPad4,7", "iPad4,8", "iPad4,9"],            7.9,  (3, 4),     "iPad Mini 3", "iPad Mini 3", 326, False, True, False, False, True, False, False, False, False, 0, False, 1, False),
-            Device("iPadMini4",      "Device is an [iPad Mini 4](https://support.apple.com/kb/SP725)",                         "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP725/SP725ipad-mini-4.png",                   ["iPad5,1", "iPad5,2"],                       7.9,  (3, 4),     "iPad Mini 4", "iPad Mini 4", 326, False, True, False, False, True, False, False, False, False, 0, False, 1, False),
-            Device("iPadMini5",      "Device is an [iPad Mini (5th generation)](https://support.apple.com/kb/SP788)",          "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP788/ipad-mini-2019.jpg",                     ["iPad11,1", "iPad11,2"],                     7.9,  (3, 4),     "iPad Mini (5th generation)", "iPad Mini (5th generation)", 326, False, True, False, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPadPro9Inch",   "Device is an [iPad Pro 9.7-inch](https://support.apple.com/kb/SP739)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP739/SP739.png",                              ["iPad6,3", "iPad6,4"],                       9.7,  (3, 4),     "iPad Pro (9.7-inch)", "iPad Pro (9.7-inch)", 264, False, False, True, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPadPro12Inch",  "Device is an [iPad Pro 12-inch](https://support.apple.com/kb/SP723)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP723/SP723-iPad_Pro_2x.png",                  ["iPad6,7", "iPad6,8"],                       12.9, (3, 4),     "iPad Pro (12.9-inch)", "iPad Pro (12.9-inch)", 264, False, False, True, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPadPro12Inch2", "Device is an [iPad Pro 12-inch (2nd generation)](https://support.apple.com/kb/SP761)",   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP761/ipad-pro-12in-hero-201706.png",          ["iPad7,1", "iPad7,2"],                       12.9, (3, 4),     "iPad Pro (12.9-inch) (2nd generation)", "iPad Pro (12.9-inch) (2nd generation)", 264, False, False, True, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPadPro10Inch",  "Device is an [iPad Pro 10.5-inch](https://support.apple.com/kb/SP762)",                  "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP761/ipad-pro-10in-hero-201706.png",          ["iPad7,3", "iPad7,4"],                       10.5, (3, 4),     "iPad Pro (10.5-inch)", "iPad Pro (10.5-inch)", 264, False, False, True, False, True, False, False, False, False, 1, False, 1, False),
-            Device("iPadPro11Inch",  "Device is an [iPad Pro 11-inch](https://support.apple.com/kb/SP784)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP784/ipad-pro-11-2018_2x.png",                ["iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4"], 11.0, (139, 199), "iPad Pro (11-inch)", "iPad Pro (11-inch)", 264, False, False, True, False, False, True, False, False, True, 2, False, 1, False),
-            Device("iPadPro12Inch3", "Device is an [iPad Pro 12.9-inch (3rd generation)](https://support.apple.com/kb/SP785)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP785/ipad-pro-12-2018_2x.png",                ["iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8"], 12.9, (512, 683), "iPad Pro (12.9-inch) (3rd generation)", "iPad Pro (12.9-inch) (3rd generation)", 264, False, False, True, False, False, True, False, False, True, 2, False, 1, False),
-            Device("iPadPro11Inch2", "Device is an [iPad Pro 11-inch (2nd generation)](https://support.apple.com/kb/SP814)",   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP814/ipad-pro-11-2020.jpeg",                  ["iPad8,9", "iPad8,10"],                      11.0, (139, 199), "iPad Pro (11-inch) (2nd generation)", "iPad Pro (11-inch) (2nd generation)", 264, False, False, True, False, False, True, False, False, True, 2, False, 13, True),
-            Device("iPadPro12Inch4", "Device is an [iPad Pro 12.9-inch (4th generation)](https://support.apple.com/kb/SP815)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP815/ipad-pro-12-2020.jpeg",                  ["iPad8,11", "iPad8,12"],                     12.9, (512, 683), "iPad Pro (12.9-inch) (4th generation)", "iPad Pro (12.9-inch) (4th generation)", 264, False, False, True, False, False, True, False, False, True, 2, False, 13, True)
+            Device("iPad2",          "Device is an [iPad 2](https://support.apple.com/kb/SP622)",                              "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP622/SP622_01-ipad2-mul.png",                 ["iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4"], 9.7,  (3, 4),     "iPad 2", 132, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPad3",          "Device is an [iPad (3rd generation)](https://support.apple.com/kb/SP647)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP662/sp662_ipad-4th-gen_color.jpg",           ["iPad3,1", "iPad3,2", "iPad3,3"],            9.7,  (3, 4),     "iPad (3rd generation)", 264, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPad4",          "Device is an [iPad (4th generation)](https://support.apple.com/kb/SP662)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP662/sp662_ipad-4th-gen_color.jpg",           ["iPad3,4", "iPad3,5", "iPad3,6"],            9.7,  (3, 4),     "iPad (4th generation)", 264, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPadAir",        "Device is an [iPad Air](https://support.apple.com/kb/SP692)",                            "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP692/SP692-specs_color-mul.png",              ["iPad4,1", "iPad4,2", "iPad4,3"],            9.7,  (3, 4),     "iPad Air", 264, False, False, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPadAir2",       "Device is an [iPad Air 2](https://support.apple.com/kb/SP708)",                          "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP708/SP708-space_gray.jpeg",                  ["iPad5,3", "iPad5,4"],                       9.7,  (3, 4),     "iPad Air 2", 264, False, False, False, False, True, False, False, False, False, 0, False, 1),
+            Device("iPad5",          "Device is an [iPad (5th generation)](https://support.apple.com/kb/SP751)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP751/ipad_5th_generation.png",                ["iPad6,11", "iPad6,12"],                     9.7,  (3, 4),     "iPad (5th generation)", 264, False, False, False, False, True, False, False, False, False, 0, False, 1),
+            Device("iPad6",          "Device is an [iPad (6th generation)](https://support.apple.com/kb/SP774)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP774/sp774-ipad-6-gen_2x.png",                ["iPad7,5", "iPad7,6"],                       9.7,  (3, 4),     "iPad (6th generation)", 264, False, False, False, False, True, False, False, False, False, 1, False, 1),
+            Device("iPadAir3",       "Device is an [iPad Air (3rd generation)](https://support.apple.com/kb/SP787)",           "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP787/ipad-air-2019.jpg",                      ["iPad11,3", "iPad11,4"],                     10.5, (3, 4),     "iPad Air (3rd generation)", 264, False, False, False, False, True, False, False, False, False, 1, False, 1),
+            Device("iPad7",          "Device is an [iPad (7th generation)](https://support.apple.com/kb/SP807)",               "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP807/sp807-ipad-7th-gen_2x.png",              ["iPad7,11", "iPad7,12"],                     10.2, (3, 4),     "iPad (7th generation)", 264, False, False, False, False, True, False, False, False, False, 1, False, 1),
+            Device("iPadMini",       "Device is an [iPad Mini](https://support.apple.com/kb/SP661)",                           "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP661/sp661_ipad_mini_color.jpg",              ["iPad2,5", "iPad2,6", "iPad2,7"],            7.9,  (3, 4),     "iPad Mini", 163, False, True, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPadMini2",      "Device is an [iPad Mini 2](https://support.apple.com/kb/SP693)",                         "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP693/SP693-specs_color-mul.png",              ["iPad4,4", "iPad4,5", "iPad4,6"],            7.9,  (3, 4),     "iPad Mini 2", 326, False, True, False, False, False, False, False, False, False, 0, False, 1),
+            Device("iPadMini3",      "Device is an [iPad Mini 3](https://support.apple.com/kb/SP709)",                         "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP709/SP709-space_gray.jpeg",                  ["iPad4,7", "iPad4,8", "iPad4,9"],            7.9,  (3, 4),     "iPad Mini 3", 326, False, True, False, False, True, False, False, False, False, 0, False, 1),
+            Device("iPadMini4",      "Device is an [iPad Mini 4](https://support.apple.com/kb/SP725)",                         "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP725/SP725ipad-mini-4.png",                   ["iPad5,1", "iPad5,2"],                       7.9,  (3, 4),     "iPad Mini 4", 326, False, True, False, False, True, False, False, False, False, 0, False, 1),
+            Device("iPadMini5",      "Device is an [iPad Mini (5th generation)](https://support.apple.com/kb/SP788)",          "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP788/ipad-mini-2019.jpg",                     ["iPad11,1", "iPad11,2"],                     7.9,  (3, 4),     "iPad Mini (5th generation)", 326, False, True, False, False, True, False, False, False, False, 1, False, 1),
+            Device("iPadPro9Inch",   "Device is an [iPad Pro 9.7-inch](https://support.apple.com/kb/SP739)",                   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP739/SP739.png",                              ["iPad6,3", "iPad6,4"],                       9.7,  (3, 4),     "iPad Pro (9.7-inch)", 264, False, False, True, False, True, False, False, False, False, 1, False, 1),
+            Device("iPadPro12Inch",  "Device is an [iPad Pro 12-inch](https://support.apple.com/kb/SP723)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP723/SP723-iPad_Pro_2x.png",                  ["iPad6,7", "iPad6,8"],                       12.9, (3, 4),     "iPad Pro (12.9-inch)", 264, False, False, True, False, True, False, False, False, False, 1, False, 1),
+            Device("iPadPro12Inch2", "Device is an [iPad Pro 12-inch (2nd generation)](https://support.apple.com/kb/SP761)",   "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP761/ipad-pro-12in-hero-201706.png",          ["iPad7,1", "iPad7,2"],                       12.9, (3, 4),     "iPad Pro (12.9-inch) (2nd generation)", 264, False, False, True, False, True, False, False, False, False, 1, False, 1),
+            Device("iPadPro10Inch",  "Device is an [iPad Pro 10.5-inch](https://support.apple.com/kb/SP762)",                  "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP761/ipad-pro-10in-hero-201706.png",          ["iPad7,3", "iPad7,4"],                       10.5, (3, 4),     "iPad Pro (10.5-inch)", 264, False, False, True, False, True, False, False, False, False, 1, False, 1),
+            Device("iPadPro11Inch",  "Device is an [iPad Pro 11-inch](https://support.apple.com/kb/SP784)",                    "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP784/ipad-pro-11-2018_2x.png",                ["iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4"], 11.0, (139, 199), "iPad Pro (11-inch)", 264, False, False, True, False, False, True, False, False, True, 2, False, 1),
+            Device("iPadPro12Inch3", "Device is an [iPad Pro 12.9-inch (3rd generation)](https://support.apple.com/kb/SP785)", "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP785/ipad-pro-12-2018_2x.png",                ["iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8"], 12.9, (512, 683), "iPad Pro (12.9-inch) (3rd generation)", 264, False, False, True, False, False, True, False, False, True, 2, False, 1)
         ]
 
 homePods = [
-            Device("homePod",        "Device is a [HomePod](https://support.apple.com/kb/SP773)",                              "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP773/homepod_space_gray_large_2x.jpg",        ["AudioAccessory1,1"],                        -1,   (4, 5),     "HomePod", "HomePod", -1, False, False, False, False, False, False, False, False, False, 0, False, 0, False),
+            Device("homePod",        "Device is a [HomePod](https://support.apple.com/kb/SP773)",                              "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP773/homepod_space_gray_large_2x.jpg",        ["AudioAccessory1,1"],                        -1,   (4, 5),     "HomePod", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
            ]
 # tvOS
 tvs = [
-            Device("appleTVHD",      "Device is an [Apple TV HD](https://support.apple.com/kb/SP724) (Previously Apple TV (4th generation))", "http://images.apple.com/v/tv/c/images/overview/buy_tv_large_2x.jpg",                      ["AppleTV5,3"],                               0,    (),         "Apple TV HD", "Apple TV HD", -1, False, False, False, False, False, False, False, False, False, 0, False, 0, False),
-            Device("appleTV4K",      "Device is an [Apple TV 4K](https://support.apple.com/kb/SP769)",                                        "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP769/appletv4k.png",           ["AppleTV6,2"],                               0,    (),         "Apple TV 4K", "Apple TV 4K", -1, False, False, False, False, False, False, False, False, False, 0, False, 0, False)
+            Device("appleTVHD",      "Device is an [Apple TV HD](https://support.apple.com/kb/SP724) (Previously Apple TV (4th generation))", "http://images.apple.com/v/tv/c/images/overview/buy_tv_large_2x.jpg",                      ["AppleTV5,3"],                               0,    (),         "Apple TV HD", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device("appleTV4K",      "Device is an [Apple TV 4K](https://support.apple.com/kb/SP769)",                                        "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP769/appletv4k.png",           ["AppleTV6,2"],                               0,    (),         "Apple TV 4K", -1, False, False, False, False, False, False, False, False, False, 0, False, 0)
       ]
 
 # watchOS
@@ -113,110 +102,421 @@ watches = [
             "appleWatchSeries0_38mm",
             "Device is an [Apple Watch (1st generation)](https://support.apple.com/kb/SP735)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM784/en_US/apple_watch_sport-240.png",
-            ["Watch1,1"], 1.5, (4,5), "Apple Watch (1st generation) 38mm", "Apple Watch (1st generation) 38mm", 290, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch1,1"], 1.5, (4,5), "Apple Watch (1st generation) 38mm", 290, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries0_42mm",
             "Device is an [Apple Watch (1st generation)](https://support.apple.com/kb/SP735)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM784/en_US/apple_watch_sport-240.png",
-            ["Watch1,2"], 1.6, (4,5), "Apple Watch (1st generation) 42mm", "Apple Watch (1st generation) 42mm", 303, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch1,2"], 1.6, (4,5), "Apple Watch (1st generation) 42mm", 303, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries1_38mm",
             "Device is an [Apple Watch Series 1](https://support.apple.com/kb/SP745)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM848/en_US/applewatch-series2-aluminum-temp-240.png",
-            ["Watch2,6"], 1.5, (4,5), "Apple Watch Series 1 38mm", "Apple Watch Series 1 38mm", 290, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch2,6"], 1.5, (4,5), "Apple Watch Series 1 38mm", 290, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries1_42mm",
             "Device is an [Apple Watch Series 1](https://support.apple.com/kb/SP745)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM848/en_US/applewatch-series2-aluminum-temp-240.png",
-            ["Watch2,7"], 1.6, (4,5), "Apple Watch Series 1 42mm", "Apple Watch Series 1 42mm", 303, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch2,7"], 1.6, (4,5), "Apple Watch Series 1 42mm", 303, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries2_38mm",
             "Device is an [Apple Watch Series 2](https://support.apple.com/kb/SP746)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM852/en_US/applewatch-series2-hermes-240.png",
-            ["Watch2,3"], 1.5, (4,5), "Apple Watch Series 2 38mm", "Apple Watch Series 2 38mm", 290, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch2,3"], 1.5, (4,5), "Apple Watch Series 2 38mm", 290, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries2_42mm",
             "Device is an [Apple Watch Series 2](https://support.apple.com/kb/SP746)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM852/en_US/applewatch-series2-hermes-240.png",
-            ["Watch2,4"], 1.6, (4,5), "Apple Watch Series 2 42mm", "Apple Watch Series 2 42mm", 303, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch2,4"], 1.6, (4,5), "Apple Watch Series 2 42mm", 303, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries3_38mm",
             "Device is an [Apple Watch Series 3](https://support.apple.com/kb/SP766)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM893/en_US/apple-watch-s3-nikeplus-240.png",
-            ["Watch3,1", "Watch3,3"], 1.5, (4,5), "Apple Watch Series 3 38mm", "Apple Watch Series 3 38mm", 290, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch3,1", "Watch3,3"], 1.5, (4,5), "Apple Watch Series 3 38mm", 290, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries3_42mm",
             "Device is an [Apple Watch Series 3](https://support.apple.com/kb/SP766)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM893/en_US/apple-watch-s3-nikeplus-240.png",
-            ["Watch3,2", "Watch3,4"], 1.6, (4,5), "Apple Watch Series 3 42mm", "Apple Watch Series 3 42mm", 303, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch3,2", "Watch3,4"], 1.6, (4,5), "Apple Watch Series 3 42mm", 303, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries4_40mm",
             "Device is an [Apple Watch Series 4](https://support.apple.com/kb/SP778)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM911/en_US/aw-series4-nike-240.png",
-            ["Watch4,1", "Watch4,3"], 1.8, (4,5), "Apple Watch Series 4 40mm", "Apple Watch Series 4 40mm", 326, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch4,1", "Watch4,3"], 1.8, (4,5), "Apple Watch Series 4 40mm", 326, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries4_44mm",
             "Device is an [Apple Watch Series 4](https://support.apple.com/kb/SP778)",
             "https://km.support.apple.com/resources/sites/APPLE/content/live/IMAGES/0/IM911/en_US/aw-series4-nike-240.png",
-            ["Watch4,2", "Watch4,4"], 2.0, (4,5), "Apple Watch Series 4 44mm", "Apple Watch Series 4 44mm", 326, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch4,2", "Watch4,4"], 2.0, (4,5), "Apple Watch Series 4 44mm", 326, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries5_40mm",
             "Device is an [Apple Watch Series 5](https://support.apple.com/kb/SP808)",
             "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP808/sp808-apple-watch-series-5_2x.png",
-            ["Watch5,1", "Watch5,3"], 1.8, (4,5), "Apple Watch Series 5 40mm", "Apple Watch Series 5 40mm", 326, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
+            ["Watch5,1", "Watch5,3"], 1.8, (4,5), "Apple Watch Series 5 40mm", 326, False, False, False, False, False, False, False, True, False, 0, True, 0),
 
             Device(
             "appleWatchSeries5_44mm",
             "Device is an [Apple Watch Series 5](https://support.apple.com/kb/SP808)",
             "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP808/sp808-apple-watch-series-5_2x.png",
-            ["Watch5,2", "Watch5,4"], 2.0, (4,5), "Apple Watch Series 5 44mm", "Apple Watch Series 5 44mm", 326, False, False, False, False, False, False, False, True, False, 0, True, 0, False),
-
-            Device(
-            "appleWatchSeries6_40mm",
-            "Device is an [Apple Watch Series 6](https://support.apple.com/kb/SP826)",
-            "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP826/sp826-apple-watch-series6-580_2x.png",
-            ["Watch6,1", "Watch6,3"], 1.8, (4,5), "Apple Watch Series 6 40mm", "Apple Watch Series 6 40mm", 326, False, False, False, False, False, False, False, True, False, 0, False, 0, False),
-
-            Device(
-            "appleWatchSeries6_44mm",
-            "Device is an [Apple Watch Series 6](https://support.apple.com/kb/SP826)",
-            "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP826/sp826-apple-watch-series6-580_2x.png",
-            ["Watch6,2", "Watch6,4"], 2.0, (4,5), "Apple Watch Series 6 44mm", "Apple Watch Series 6 44mm", 326, False, False, False, False, False, False, False, True, False, 0, False, 0, False),
-
-            Device(
-            "appleWatchSE_40mm",
-            "Device is an [Apple Watch SE](https://support.apple.com/kb/SP827)",
-            "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP827/sp827-apple-watch-se-580_2x.png",
-            ["Watch5,9", "Watch5,11"], 1.8, (4,5), "Apple Watch SE 40mm", "Apple Watch SE 40mm", 326, False, False, False, False, False, False, False, True, False, 0, False, 0, False),
-
-            Device(
-            "appleWatchSE_44mm",
-            "Device is an [Apple Watch SE](https://support.apple.com/kb/SP827)",
-            "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP827/sp827-apple-watch-se-580_2x.png",
-            ["Watch5,10", "Watch5,12"], 2.0, (4,5), "Apple Watch SE 44mm", "Apple Watch SE 44mm", 326, False, False, False, False, False, False, False, True, False, 0, False, 0, False)
+            ["Watch5,2", "Watch5,4"], 2.0, (4,5), "Apple Watch Series 5 44mm", 326, False, False, False, False, False, False, False, True, False, 0, True, 0)
   ]
+# macOS
+## https://support.apple.com/specs/macmini, https://support.apple.com/en-us/HT201894
+macMinis = [
+            Device(
+            "macMini2018",
+            "Device is a [Mac mini (2018)](https://support.apple.com/kb/SP782)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macmini/mac-mini-2018-space-gray.jpg",
+            ["Macmini8,1"], 0, (), "Mac mini (2018)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macMiniLate2014",
+            "Device is a [Mac mini (Late 2014)](https://support.apple.com/kb/SP710)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macmini/mac-mini-2014.jpg",
+            ["Macmini7,1"], 0, (), "Mac mini (Late 2014)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macMiniLate2012",
+            "Device is a [Mac mini (Late 2012)](https://support.apple.com/kb/SP659)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macmini/mac-mini-2011-2012-2014-device.jpg",
+            ["Macmini6,1", "Macmini6,2"], 0, (), "Mac mini (Late 2012)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macMiniMid2011",
+            "Device is a [Mac mini (Mid 2011)](https://support.apple.com/kb/SP632)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macmini/mac-mini-2011-2012-2014-device.jpg",
+            ["Macmini5,1", "Macmini5,2"], 0, (), "Mac mini (Mid 2011)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macMiniMid2010",
+            "Device is a [Mac mini (Mid 2010)](https://support.apple.com/kb/SP585)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macmini/mac-mini-2010-device.jpg",
+            ["Macmini4,1"], 0, (), "Mac mini (Mid 2010)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macMini2009",
+            "Device is a [Mac mini (Late 2009)](https://support.apple.com/kb/SP577) or [Mac mini (Early 2009)](https://support.apple.com/kb/SP505)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macmini/mac-mini-2009-device.jpg",
+            ["Macmini3,1"], 0, (), "Mac mini (2009)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0)
+]
+## https://support.apple.com/mac/imac, https://support.apple.com/en-us/HT201634
+iMacs = [
+            Device(
+            "iMacRetina5K27Inch2019",
+            "Device is a [iMac (Retina 5K, 27-inch, 2019)](https://support.apple.com/kb/SP790)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2017.jpg",
+            ["iMac19,1"], 0, (), "iMac (Retina 5K, 27-inch, 2019)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMacRetina4K215Inch2019",
+            "Device is a [iMac (Retina 4K, 21.5-inch, 2019)](https://support.apple.com/kb/SP789)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-21-5-2017.jpg",
+            ["iMac19,2"], 0, (), "iMac (Retina 4K, 21.5-inch, 2019)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMacRetina5K27Inch2017",
+            "Device is a [iMac (Retina 5K, 27-inch, 2017)](https://support.apple.com/kb/SP760)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2017.jpg",
+            ["iMac18,3"], 0, (), "iMac (Retina 5K, 27-inch, 2017)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMacRetina4K215Inch2017",
+            "Device is a [iMac (Retina 4K, 21.5-inch, 2017)](https://support.apple.com/kb/SP759)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-21-5-2017.jpg",
+            ["iMac18,2"], 0, (), "iMac (Retina 4K, 21.5-inch, 2017)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac215Inch2017",
+            "Device is a [iMac (21.5-inch, 2017)](https://support.apple.com/kb/SP758)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-21-5-2017.jpg",
+            ["iMac18,1"], 0, (), "iMac (21.5-inch, 2017)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMacRetina5K27InchLate2015",
+            "Device is a [iMac (Retina 5K, 27-inch, Late 2015)](https://support.apple.com/kb/SP731)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-late-2015.jpg",
+            ["iMac17,1"], 0, (), "iMac (Retina 5K, 27-inch, Late 2015)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMacRetina4K215InchLate2015",
+            "Device is a [iMac (Retina 4K, 21.5-inch, Late 2015)](https://support.apple.com/kb/SP732)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-21-5-2015.jpg",
+            ["iMac16,2"], 0, (), "iMac (Retina 4K, 21.5-inch, Late 2015)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac215InchLate2015",
+            "Device is a [iMac (21.5-inch, Late 2015)](https://support.apple.com/kb/SP733)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-21-5-2015.jpg",
+            ["iMac16,1"], 0, (), "iMac (21.5-inch, Late 2015)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMacRetina5K27InchMid2015",
+            "Device is a [iMac (Retina 5K, 27-inch, Mid 2015)](https://support.apple.com/kb/SP718) or [iMac (Retina 5K, 27-inch, Late 2014)](https://support.apple.com/kb/SP707)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-late-2015.jpg",
+            ["iMac15,1"], 0, (), "iMac (Retina 5K, 27-inch)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac215InchMid2014",
+            "Device is a [iMac (21.5-inch, Mid 2014)](https://support.apple.com/kb/SP701)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2014.jpg",
+            ["iMac14,4"], 0, (), "iMac (21.5-inch, Mid 2014)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac27InchLate2013",
+            "Device is a [iMac (27-inch, Late 2013)](https://support.apple.com/kb/SP688)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2013.jpg",
+            ["iMac14,2"], 0, (), "iMac (27-inch, Late 2013)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac215InchLate2013",
+            "Device is a [iMac (21.5-inch, Late 2013)](https://support.apple.com/kb/SP687)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2013.jpg",
+            ["iMac14,1"], 0, (), "iMac (21.5-inch, Late 2013)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac215InchLate2012",
+            "Device is a [iMac (21.5-inch, Late 2012)](https://support.apple.com/kb/SP665)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2012.jpg",
+            ["iMac13,1"], 0, (), "iMac (21.5-inch, Late 2012)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac27InchMid2011",
+            "Device is a [iMac (27-inch, Mid 2011)](https://support.apple.com/kb/SP689)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2011.jpg",
+            ["iMac12,2"], 0, (), "iMac (27-inch, Mid 2011)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac215InchMid2011",
+            "Device is a [iMac (21.5-inch, Mid 2011)](https://support.apple.com/kb/SP623)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2011.jpg",
+            ["iMac12,1"], 0, (), "iMac (21.5-inch, Mid 2011)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac27InchMid2010",
+            "Device is a [iMac (27-inch, Mid 2010)](https://support.apple.com/kb/SP695)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2010.jpg",
+            ["iMac11,3"], 0, (), "iMac (27-inch, Mid 2010)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "iMac215InchMid2010",
+            "Device is a [iMac (21.5-inch, Mid 2010)](https://support.apple.com/kb/SP588)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/imac/imac-27-2010.jpg",
+            ["iMac11,2"], 0, (), "iMac (21.5-inch, Mid 2010)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0)
+]
+## https://support.apple.com/mac/mac-pro, https://support.apple.com/en-us/HT202888
+macPros = [
+            Device(
+            "macPro2019",
+            "Device is a [Mac Pro (2019)](https://support.apple.com/kb/SP797)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macpro/id-mac-pro-2019.jpg",
+            ["MacPro7,1"], 0, (), "Mac Pro (2019)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macProLate2013",
+            "Device is a [Mac Pro (Late 2013)](https://support.apple.com/kb/SP697)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macpro/id-mac-pro-2013.jpg",
+            ["MacPro6,1"], 0, (), "Mac Pro (Late 2013)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macProMid2012",
+            "Device is a [Mac Pro (Mid 2012)](https://support.apple.com/kb/SP652)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macpro/id-mac-pro-2009-2012.jpg",
+            ["MacPro5,1"], 0, (), "Mac Pro (Mid 2010 to Mid 2012)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macProEarly2009",
+            "Device is a [Mac Pro (Early 2009)](https://support.apple.com/kb/SP506)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macpro/id-mac-pro-2009-2012.jpg",
+            ["MacPro4,1"], 0, (), "Mac Pro (Early 2009)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0)
+]
+## https://support.apple.com/mac/macbook, https://support.apple.com/en-us/HT201608
+macBooks = [
+            Device(
+            "macBookRetina12Inch2017",
+            "Device is a [MacBook (Retina, 12-inch, 2017)](https://support.apple.com/kb/SP757)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbook/macbook-2017-device.jpg",
+            ["MacBook10,1"], 0, (), "MacBook (Retina, 12-inch, 2017)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookRetina12InchEarly2016",
+            "Device is a [MacBook (Retina, 12-inch, Early 2016)](https://support.apple.com/kb/SP741)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbook/macbook-2016-device.jpg",
+            ["MacBook9,1"], 0, (), "MacBook (Retina, 12-inch, Early 2016)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookRetina12InchEarly2015",
+            "Device is a [MacBook (Retina, 12-inch, Early 2015)](https://support.apple.com/kb/SP712)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbook/macbook-2015-device.jpg",
+            ["MacBook8,1"], 0, (), "MacBook (Retina, 12-inch, Early 2015)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBook13InchMid2010",
+            "Device is a [MacBook (13-inch, Mid 2010)](https://support.apple.com/kb/SP584)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbook/macbook-late-2009-2010-device.jpg",
+            ["MacBook7,1"], 0, (), "MacBook (13-inch, Mid 2010)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBook13InchLate2009",
+            "Device is a [MacBook (13-inch, Late 2009)](https://support.apple.com/kb/SP579)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbook/macbook-late-2009-2010-device.jpg",
+            ["MacBook6,1"], 0, (), "MacBook (13-inch, Late 2009)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0)
+]
+## https://support.apple.com/mac/macbook-air, https://support.apple.com/en-us/HT201862
+macBookAirs = [
+            Device(
+            "macBookAirRetina13Inch2019",
+            "Device is a [MacBook Air (Retina, 13-inch, 2019)](https://support.apple.com/kb/SP798)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2018-device.jpg",
+            ["MacBookAir8,2"], 0, (), "MacBook Air (Retina, 13-inch, 2019)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAirRetina13Inch2018",
+            "Device is a [MacBook Air (Retina, 13-inch, 2018)](https://support.apple.com/kb/SP783)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2018-device.jpg",
+            ["MacBookAir8,1"], 0, (), "MacBook Air (Retina, 13-inch, 2018)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir13Inch2017",
+            "Device is a [MacBook Air (13-inch, 2017)](https://support.apple.com/kb/SP753)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2017-device.jpg",
+            ["MacBookAir7,3"], 0, (), "MacBook Air (13-inch, 2017)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir13InchEarly2015",
+            "Device is a [MacBook Air (13-inch, Early 2015)](https://support.apple.com/kb/SP714)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2015-13in-device.jpg",
+            ["MacBookAir7,2"], 0, (), "MacBook Air (13-inch, Early 2015)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir11InchEarly2015",
+            "Device is a [MacBook Air (11-inch, Early 2015)](https://support.apple.com/kb/SP713)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2015-11in-device.jpg",
+            ["MacBookAir7,1"], 0, (), "MacBook Air (11-inch, Early 2015)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir13InchEarly2014",
+            "Device is a [MacBook Air (13-inch, Early 2014)](https://support.apple.com/kb/SP700) or [MacBook Air (13-inch, Mid 2013)](https://support.apple.com/kb/SP678)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2013-2014-13in-device.jpg",
+            ["MacBookAir6,2"], 0, (), "MacBook Air (13-inch, Early 2014)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir11InchEarly2014",
+            "Device is a [MacBook Air (11-inch, Early 2014)](https://support.apple.com/kb/SP699) or [MacBook Air (11-inch, Mid 2013)](https://support.apple.com/kb/SP677)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2013-2014-11in-device.jpg",
+            ["MacBookAir6,1"], 0, (), "MacBook Air (11-inch, Early 2014)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir13InchMid2012",
+            "Device is a [MacBook Air (13-inch, Mid 2012)](https://support.apple.com/kb/SP670)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2012-13in-device.jpg",
+            ["MacBookAir5,2"], 0, (), "MacBook Air (13-inch, Mid 2012)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir11InchMid2012",
+            "Device is a [MacBook Air (11-inch, Mid 2012)](https://support.apple.com/kb/SP650)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2012-11in-device.jpg",
+            ["MacBookAir5,1"], 0, (), "MacBook Air (11-inch, Mid 2012)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir13InchMid2011",
+            "Device is a [MacBook Air (13-inch, Mid 2011)](https://support.apple.com/kb/SP683)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2011-13in-device.jpg",
+            ["MacBookAir4,2"], 0, (), "MacBook Air (13-inch, Mid 2011)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir11InchMid2011",
+            "Device is a [MacBook Air (11-inch, Mid 2011)](https://support.apple.com/kb/SP631)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2011-11in-device.jpg",
+            ["MacBookAir4,1"], 0, (), "MacBook Air (11-inch, Mid 2011)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir13InchLate2010",
+            "Device is a [MacBook Air (13-inch, Late 2010)](https://support.apple.com/kb/SP618)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2009-2010-13in-device.jpg",
+            ["MacBookAir3,2"], 0, (), "MacBook Air (13-inch, Late 2010)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAir11InchLate2010",
+            "Device is a [MacBook Air (11-inch, Late 2010)](https://support.apple.com/kb/SP617)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2010-11in-device.jpg",
+            ["MacBookAir3,1"], 0, (), "MacBook Air (11-inch, Late 2010)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookAirMid2009",
+            "Device is a [MacBook Air (Mid 2009)](https://support.apple.com/kb/SP548)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookair/macbook-air-2009-2010-13in-device.jpg",
+            ["MacBookAir2,1"], 0, (), "MacBook Air (Mid 2009)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0)
+]
+## https://support.apple.com/mac/macbook-pro, https://support.apple.com/en-us/HT201300
+macBookPros = [
+            Device(
+            "macBookPro16Inch2019",
+            "Device is a [MacBook Pro (16-inch, 2019)](https://support.apple.com/kb/SP809)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-16in-2019.jpg",
+            ["MacBookPro16,1"], 0, (), "MacBook Pro (16-inch, 2019)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro13Inch2019TwoThunderbolt3Ports",
+            "Device is a [MacBook Pro (13-inch, 2019, Two Thunderbolt 3 ports)](https://support.apple.com/kb/SP799)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2018-13in-device.jpg",
+            ["MacBookPro15,4"], 0, (), "MacBook Pro (13-inch, 2019, Two Thunderbolt 3 ports)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro15Inch2019",
+            "Device is a [MacBook Pro (15-inch, 2019)](https://support.apple.com/kb/SP794)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2018-15in-device.jpg",
+            ["MacBookPro15,3"], 0, (), "MacBook Pro (15-inch, 2019)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro13Inch2019FourThunderbolt3Ports",
+            "Device is a [MacBook Pro (13-inch, 2019, Four Thunderbolt 3 ports)](https://support.apple.com/kb/SP795) or [MacBook Pro (13-inch, 2018, Four Thunderbolt 3 ports)](https://support.apple.com/kb/SP775)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2018-13in-device.jpg",
+            ["MacBookPro15,2"], 0, (), "MacBook Pro (13-inch, 2019, Four Thunderbolt 3 ports)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro15Inch2018",
+            "Device is a [MacBook Pro (15-inch, 2018)](https://support.apple.com/kb/SP776)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2018-15in-device.jpg",
+            ["MacBookPro15,1"], 0, (), "MacBook Pro (15-inch, 2018)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro15Inch2017",
+            "Device is a [MacBook Pro (15-inch, 2017)](https://support.apple.com/kb/SP756)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2017-15in-device.jpg",
+            ["MacBookPro14,3"], 0, (), "MacBook Pro (15-inch, 2017)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro13Inch2017FourThunderbolt3Ports",
+            "Device is a [MacBook Pro (13-inch, 2017, Four Thunderbolt 3 ports)](https://support.apple.com/kb/SP755)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2017-13in-device.jpg",
+            ["MacBookPro14,2"], 0, (), "MacBook Pro (13-inch, 2017, Four Thunderbolt 3 ports)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro13Inch2017TwoThunderbolt3Ports",
+            "Device is a [MacBook Pro (13-inch, 2017, Two Thunderbolt 3 ports)](https://support.apple.com/kb/SP754)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2017-13in-device-2thunderbolt-3ports.jpg",
+            ["MacBookPro14,1"], 0, (), "MacBook Pro (13-inch, 2017, Two Thunderbolt 3 ports)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro15Inch2016",
+            "Device is a [MacBook Pro (15-inch, 2016)](https://support.apple.com/kb/SP749)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2016-15in-device.jpg",
+            ["MacBookPro13,3"], 0, (), "MacBook Pro (15-inch, 2016)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro13Inch2016FourThunderbolt3Ports",
+            "Device is a [MacBook Pro (13-inch, 2016, Four Thunderbolt 3 ports)](https://support.apple.com/kb/SP748)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2016-13in-device.jpg",
+            ["MacBookPro13,2"], 0, (), "MacBook Pro (13-inch, 2016, Four Thunderbolt 3 ports)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookPro13Inch2016TwoThunderbolt3Ports",
+            "Device is a [MacBook Pro (13-inch, 2016, Two Thunderbolt 3 ports)](https://support.apple.com/kb/SP747)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-2016-13in-device.jpg",
+            ["MacBookPro13,1"], 0, (), "MacBook Pro (13-inch, 2016, Two Thunderbolt 3 ports)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookProRetina15InchMid2015",
+            "Device is a [MacBook Pro (Retina, 15-inch, Mid 2015)](https://support.apple.com/kb/SP719)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-mid-2015-15in-device.jpg",
+            ["MacBookPro11,4"], 0, (), "MacBook Pro (Retina, 15-inch, Mid 2015)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookProRetina13InchEarly2015",
+            "Device is a [MacBook Pro (Retina, 13-inch, Early 2015)](https://support.apple.com/kb/SP715)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-early-2015-13in-device.jpg",
+            ["MacBookPro12,1"], 0, (), "MacBook Pro (Retina, 13-inch, Early 2015)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookProRetina15InchMid2014",
+            "Device is a [MacBook Pro (Retina, 15-inch, Mid 2014)](https://support.apple.com/kb/SP704) or [MacBook Pro (Retina, 15-inch, Late 2013)](https://support.apple.com/kb/SP690)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-mid-2014-15in-device.jpg",
+            ["MacBookPro11,2"], 0, (), "MacBook Pro (Retina, 15-inch, Mid 2014)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0),
+            Device(
+            "macBookProRetina13InchMid2014",
+            "Device is a [MacBook Pro (Retina, 13-inch, Mid 2014)](https://support.apple.com/kb/SP703) or [MacBook Pro (Retina, 13-inch, Late 2013)](https://support.apple.com/kb/SP691)",
+            "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macbook-pro-mid-2014-13in-device.jpg",
+            ["MacBookPro11,1"], 0, (), "MacBook Pro (Retina, 13-inch, Mid 2014)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0)
+]
+## https://support.apple.com/mac/imac-pro
+iMacPros = [
+            Device(
+            "iMacPro2017",
+            "Device is an [iMac Pro](https://support.apple.com/kb/SP771)",
+            "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP771/SP771-imac-pro-2017.png",
+            ["iMacPro1,1"], 0, (), "iMac Pro (2017)", -1, False, False, False, False, False, False, False, False, False, 0, False, 0)
+]
 
 iOSDevices = iPods + iPhones + iPads + homePods
 tvOSDevices = tvs
 watchOSDevices = watches
+macOSDevices = macMinis + iMacs + macPros + macBooks + macBookAirs + macBookPros + iMacPros
 }%
 #if os(watchOS)
 import WatchKit
+#elseif os(macOS)
+import AppKit
 #else
 import UIKit
 #endif
 
-// MARK: Device
+// MARK: - Device
 
 /// This enum is a value-type wrapper and extension of
 /// [`UIDevice`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIDevice_Class/).
@@ -269,6 +569,13 @@ public enum Device {
     /// ![Image](${device.imageURL})
     case ${device.caseName}
 % end
+  #elseif os(macOS)
+% for device in macOSDevices:
+    /// ${device.comment}
+    ///
+    /// ![Image](${device.imageURL})
+    case ${device.caseName}
+% end
   #endif
 
   /// Device is [Simulator](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/Introduction/Introduction.html)
@@ -288,6 +595,12 @@ public enum Device {
 
   /// Gets the identifier from the system, such as "iPhone7,1".
   public static var identifier: String = {
+    #if os(macOS)
+    let identifier = try? sysctlData(for: [CTL_HW, HW_MODEL]).withUnsafeBufferPointer { dataPointer -> String? in
+        dataPointer.baseAddress.flatMap { String(validatingUTF8: $0) }
+    }
+    return identifier ?? ""
+    #else
     var systemInfo = utsname()
     uname(&systemInfo)
     let mirror = Mirror(reflecting: systemInfo.machine)
@@ -297,6 +610,7 @@ public enum Device {
       return identifier + String(UnicodeScalar(UInt8(value)))
     }
     return identifier
+    #endif
   }()
 
   /// Maps an identifier to a Device. If the identifier can not be mapped to an existing device, `UnknownDevice(identifier)` is returned.
@@ -310,7 +624,7 @@ public enum Device {
 % for device in iOSDevices:
       case ${', '.join(list(map(lambda device: "\"" + device + "\"", device.identifiers)))}: return ${device.caseName}
 % end
-      case "i386", "x86_64", "arm64": return simulator(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))
+      case "i386", "x86_64": return simulator(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))
       default: return unknown(identifier)
       }
     #elseif os(tvOS)
@@ -318,7 +632,7 @@ public enum Device {
 % for device in tvOSDevices:
       case ${', '.join(list(map(lambda device: "\"" + device + "\"", device.identifiers)))}: return ${device.caseName}
 % end
-      case "i386", "x86_64", "arm64": return simulator(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "tvOS"))
+      case "i386", "x86_64": return simulator(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "tvOS"))
       default: return unknown(identifier)
       }
     #elseif os(watchOS)
@@ -326,7 +640,14 @@ public enum Device {
 % for device in watchOSDevices:
       case ${', '.join(list(map(lambda device: "\"" + device + "\"", device.identifiers)))}: return ${device.caseName}
 % end
-      case "i386", "x86_64", "arm64": return simulator(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "watchOS"))
+      case "i386", "x86_64": return simulator(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "watchOS"))
+      default: return unknown(identifier)
+      }
+    #elseif os(macOS)
+      switch identifier {
+    % for device in macOSDevices:
+      case ${', '.join(list(map(lambda device: "\"" + device + "\"", device.identifiers)))}: return ${device.caseName}
+    % end
       default: return unknown(identifier)
       }
     #endif
@@ -366,6 +687,8 @@ public enum Device {
       case .simulator(let model): return model.diagonal
       case .unknown: return -1
       }
+    #elseif os(macOS)
+      return -1
     #endif
   }
   #endif
@@ -390,6 +713,8 @@ public enum Device {
       }
     #elseif os(tvOS)
       return (width: -1, height: -1)
+    #elseif os(macOS)
+      return (width: -1, height: -1)
     #endif
   }
 
@@ -410,12 +735,11 @@ public enum Device {
     }
 
     /// All X-Series Devices
-    @available(*, deprecated, renamed: "allDevicesWithSensorHousing")
     public static var allXSeriesDevices: [Device] {
       return [${', '.join(list(map(lambda device: "." + device.caseName, list(filter(lambda device: device.isXSeries == True, iOSDevices)))))}]
     }
 
-    /// All Plus and Max-Sized Devices
+    /// All Plus-Sized Devices
     public static var allPlusSizedDevices: [Device] {
       return [${', '.join(list(map(lambda device: "." + device.caseName, list(filter(lambda device: device.isPlusFormFactor == True, iOSDevices)))))}]
     }
@@ -450,13 +774,12 @@ public enum Device {
       return allMiniDevices.map(Device.simulator)
     }
 
-    /// All simulator X series Devices
-    @available(*, deprecated, renamed: "allSimulatorDevicesWithSensorHousing")
+    /// All simulator Plus-Sized Devices
     public static var allSimulatorXSeriesDevices: [Device] {
-      return allDevicesWithSensorHousing.map(Device.simulator)
+      return allXSeriesDevices.map(Device.simulator)
     }
 
-    /// All simulator Plus and Max-Sized Devices
+    /// All simulator Plus-Sized Devices
     public static var allSimulatorPlusSizedDevices: [Device] {
       return allPlusSizedDevices.map(Device.simulator)
     }
@@ -517,19 +840,14 @@ public enum Device {
       return [${', '.join(list(map(lambda device: "." + device.caseName, list(filter(lambda device: device.hasFaceID == True, iOSDevices)))))}]
     }
 
-    /// All Devices with Touch ID or Face ID
-    public static var allBiometricAuthenticationCapableDevices: [Device] {
-      return [${', '.join(list(map(lambda device: "." + device.caseName, list(filter(lambda device: device.hasTouchID == True or device.hasFaceID == True, iOSDevices)))))}]
-    }
-
     /// Returns whether or not the device has Touch ID
     public var isTouchIDCapable: Bool {
-      return isOneOf(Device.allTouchIDCapableDevices) || isOneOf(Device.allTouchIDCapableDevices.map(Device.simulator))
+      return isOneOf(Device.allTouchIDCapableDevices)
     }
 
     /// Returns whether or not the device has Face ID
     public var isFaceIDCapable: Bool {
-      return isOneOf(Device.allFaceIDCapableDevices) || isOneOf(Device.allFaceIDCapableDevices.map(Device.simulator))
+      return isOneOf(Device.allFaceIDCapableDevices)
     }
 
     /// Returns whether or not the device has any biometric sensor (i.e. Touch ID or Face ID)
@@ -542,14 +860,9 @@ public enum Device {
       return [${', '.join(list(map(lambda device: "." + device.caseName, list(filter(lambda device: device.hasSensorHousing == True, iOSDevices)))))}]
     }
 
-    /// All simulator devices that feature a sensor housing in the screen
-    public static var allSimulatorDevicesWithSensorHousing: [Device] {
-      return allDevicesWithSensorHousing.map(Device.simulator)
-    }
-
     /// Returns whether or not the device has a sensor housing
     public var hasSensorHousing: Bool {
-      return isOneOf(Device.allDevicesWithSensorHousing) || isOneOf(Device.allDevicesWithSensorHousing.map(Device.simulator))
+      return isOneOf(Device.allDevicesWithSensorHousing)
     }
 
     /// All devices that feature a screen with rounded corners.
@@ -559,7 +872,7 @@ public enum Device {
 
     /// Returns whether or not the device has a screen with rounded corners.
     public var hasRoundedDisplayCorners: Bool {
-      return isOneOf(Device.allDevicesWithRoundedDisplayCorners) || isOneOf(Device.allDevicesWithRoundedDisplayCorners.map(Device.simulator))
+      return isOneOf(Device.allDevicesWithRoundedDisplayCorners)
     }
 
     /// All devices that have 3D Touch support.
@@ -569,7 +882,7 @@ public enum Device {
 
     /// Returns whether or not the device has 3D Touch support.
     public var has3dTouchSupport: Bool {
-      return isOneOf(Device.allDevicesWith3dTouchSupport) || isOneOf(Device.allDevicesWith3dTouchSupport.map(Device.simulator))
+      return isOneOf(Device.allDevicesWith3dTouchSupport)
     }
 
     /// All devices that support wireless charging.
@@ -577,19 +890,9 @@ public enum Device {
       return [${', '.join(list(map(lambda device: "." + device.caseName, list(filter(lambda device: device.supportsWirelessCharging == True, iOSDevices)))))}]
     }
 
-    /// Returns whether or not the device supports wireless charging.
+    /// Returns whether or not the device supports wireless charging
     public var supportsWirelessCharging: Bool {
-      return isOneOf(Device.allDevicesWithWirelessChargingSupport) || isOneOf(Device.allDevicesWithWirelessChargingSupport.map(Device.simulator))
-    }
-
-    /// All devices that have a LiDAR sensor.
-    public static var allDevicesWithALidarSensor: [Device] {
-      return [${', '.join(list(map(lambda device: "." + device.caseName, list(filter(lambda device: device.hasLidarSensor == True, iOSDevices)))))}]
-    }
-
-    /// Returns whether or not the device has a LiDAR sensor.
-    public var hasLidarSensor: Bool {
-      return isOneOf(Device.allDevicesWithALidarSensor) || isOneOf(Device.allDevicesWithALidarSensor.map(Device.simulator))
+      return isOneOf(Device.allDevicesWithWirelessChargingSupport)
     }
   #elseif os(tvOS)
     /// All TVs
@@ -619,8 +922,69 @@ public enum Device {
 
     /// Returns whether or not the device has Force Touch support.
     public var hasForceTouchSupport: Bool {
-      return isOneOf(Device.allWatchesWithForceTouchSupport) || isOneOf(Device.allWatchesWithForceTouchSupport.map(Device.simulator))
+      return isOneOf(Device.allWatchesWithForceTouchSupport)
     }
+  #elseif os(macOS)
+  /// All Macs
+  public static var allMacs: [Device] {
+     return [${', '.join(list(map(lambda device: "." + device.caseName, macOSDevices)))}]
+  }
+
+  public static var allMacMinis: [Device] {
+     return [${', '.join(list(map(lambda device: "." + device.caseName, macMinis)))}]
+  }
+
+  public static var allMacBookAirs: [Device] {
+     return [${', '.join(list(map(lambda device: "." + device.caseName, macBookAirs)))}]
+  }
+
+  public static var allMacBooks: [Device] {
+     return [${', '.join(list(map(lambda device: "." + device.caseName, macBooks)))}]
+  }
+
+  public static var allMacBookPros: [Device] {
+     return [${', '.join(list(map(lambda device: "." + device.caseName, macBookPros)))}]
+  }
+
+  public static var allIMacs: [Device] {
+     return [${', '.join(list(map(lambda device: "." + device.caseName, iMacs)))}]
+  }
+
+  public static var allIMacPros: [Device] {
+     return [${', '.join(list(map(lambda device: "." + device.caseName, iMacPros)))}]
+  }
+
+  public static var allMacPros: [Device] {
+     return [${', '.join(list(map(lambda device: "." + device.caseName, macPros)))}]
+  }
+
+  public var isMacMini: Bool {
+    return isOneOf(Device.allMacMinis)
+  }
+
+  public var isMacBookAir: Bool {
+    return isOneOf(Device.allMacBookAirs)
+  }
+
+  public var isMacBook: Bool {
+    return isOneOf(Device.allMacBooks)
+  }
+
+  public var isMacBookPro: Bool {
+    return isOneOf(Device.allMacBookPros)
+  }
+
+  public var isIMac: Bool {
+    return isOneOf(Device.allIMacs)
+  }
+
+  public var isIMacPro: Bool {
+    return isOneOf(Device.allIMacPros)
+  }
+
+  public var isMacPro: Bool {
+    return isOneOf(Device.allMacPros)
+  }
   #endif
 
   /// All real devices (i.e. all devices except for all simulators)
@@ -631,6 +995,8 @@ public enum Device {
       return allTVs
     #elseif os(watchOS)
       return allWatches
+    #elseif os(macOS)
+      return allMacs
     #endif
   }
 
@@ -672,8 +1038,6 @@ public enum Device {
     return devices.contains(self)
   }
 
-  // MARK: Current Device
-
   /// Whether or not the current device is the current device.
   private var isCurrent: Bool {
     return self == Device.current
@@ -684,6 +1048,8 @@ public enum Device {
     guard isCurrent else { return nil }
     #if os(watchOS)
     return WKInterfaceDevice.current().name
+    #elseif os(macOS)
+    return description
     #else
     return UIDevice.current.name
     #endif
@@ -694,6 +1060,8 @@ public enum Device {
     guard isCurrent else { return nil }
     #if os(watchOS)
     return WKInterfaceDevice.current().systemName
+    #elseif os(macOS)
+    return "macOS"
     #else
     return UIDevice.current.systemName
     #endif
@@ -704,6 +1072,8 @@ public enum Device {
     guard isCurrent else { return nil }
     #if os(watchOS)
     return WKInterfaceDevice.current().systemVersion
+    #elseif os(macOS)
+    return ProcessInfo.processInfo.operatingSystemVersionString
     #else
     return UIDevice.current.systemVersion
     #endif
@@ -714,6 +1084,10 @@ public enum Device {
     guard isCurrent else { return nil }
     #if os(watchOS)
     return WKInterfaceDevice.current().model
+    #elseif os(macOS)
+    var set = CharacterSet.decimalDigits
+    set.insert(",")
+    return Device.identifier.components(separatedBy: set).joined()
     #else
     return UIDevice.current.model
     #endif
@@ -724,6 +1098,8 @@ public enum Device {
     guard isCurrent else { return nil }
     #if os(watchOS)
     return WKInterfaceDevice.current().localizedModel
+    #elseif os(macOS)
+    return model
     #else
     return UIDevice.current.localizedModel
     #endif
@@ -748,6 +1124,8 @@ public enum Device {
     case .unknown: return nil
     }
     #elseif os(tvOS)
+    return nil
+    #elseif os(macOS)
     return nil
     #endif
   }
@@ -775,7 +1153,7 @@ public enum Device {
   }
 }
 
-// MARK: CustomStringConvertible
+// MARK: - CustomStringConvertible
 extension Device: CustomStringConvertible {
 
   /// A textual representation of the device.
@@ -785,7 +1163,7 @@ extension Device: CustomStringConvertible {
 % for device in iOSDevices:
       case .${device.caseName}: return "${device.description}"
 % end
-      case .simulator(let model): return "Simulator (\(model.description))"
+      case .simulator(let model): return "Simulator (\(model))"
       case .unknown(let identifier): return identifier
       }
     #elseif os(watchOS)
@@ -793,7 +1171,7 @@ extension Device: CustomStringConvertible {
 % for device in watchOSDevices:
       case .${device.caseName}: return "${device.description}"
 % end
-      case .simulator(let model): return "Simulator (\(model.description))"
+      case .simulator(let model): return "Simulator (\(model))"
       case .unknown(let identifier): return identifier
       }
     #elseif os(tvOS)
@@ -801,47 +1179,22 @@ extension Device: CustomStringConvertible {
 % for device in tvOSDevices:
       case .${device.caseName}: return "${device.description}"
 % end
-      case .simulator(let model): return "Simulator (\(model.description))"
+      case .simulator(let model): return "Simulator (\(model))"
+      case .unknown(let identifier): return identifier
+      }
+    #elseif os(macOS)
+      switch self {
+% for device in macOSDevices:
+      case .${device.caseName}: return "${device.description}"
+% end
+      case .simulator(let model): return "Simulator (\(model))"
       case .unknown(let identifier): return identifier
       }
     #endif
   }
-
-  /// A safe version of `description`.
-  /// Example:
-  /// Device.iPhoneXR.description:     iPhone Xʀ
-  /// Device.iPhoneXR.safeDescription: iPhone XR
-  public var safeDescription: String {
-    #if os(iOS)
-      switch self {
-  % for device in iOSDevices:
-      case .${device.caseName}: return "${device.safeDescription}"
-  % end
-      case .simulator(let model): return "Simulator (\(model.safeDescription))"
-      case .unknown(let identifier): return identifier
-      }
-    #elseif os(watchOS)
-      switch self {
-  % for device in watchOSDevices:
-      case .${device.caseName}: return "${device.safeDescription}"
-  % end
-      case .simulator(let model): return "Simulator (\(model.safeDescription))"
-      case .unknown(let identifier): return identifier
-      }
-    #elseif os(tvOS)
-      switch self {
-  % for device in tvOSDevices:
-      case .${device.caseName}: return "${device.safeDescription}"
-  % end
-      case .simulator(let model): return "Simulator (\(model.safeDescription))"
-      case .unknown(let identifier): return identifier
-      }
-    #endif
-  }
-
 }
 
-// MARK: Equatable
+// MARK: - Equatable
 extension Device: Equatable {
 
   /// Compares two devices
@@ -856,7 +1209,7 @@ extension Device: Equatable {
 
 }
 
-// MARK: Battery
+// MARK: - Battery
 #if os(iOS) || os(watchOS)
 @available(iOS 8.0, watchOS 4.0, *)
 extension Device {
@@ -913,7 +1266,11 @@ extension Device {
 
     /// The user enabled Low Power mode
     public var lowPowerMode: Bool {
-      return ProcessInfo.processInfo.isLowPowerModeEnabled
+      if #available(iOS 9.0, *) {
+        return ProcessInfo.processInfo.isLowPowerModeEnabled
+      } else {
+        return false
+      }
     }
 
     /// Provides a textual representation of the battery state.
@@ -952,7 +1309,7 @@ extension Device {
 }
 #endif
 
-// MARK: Device.Batterystate: Comparable
+// MARK: - Device.Batterystate: Comparable
 #if os(iOS) || os(watchOS)
 @available(iOS 8.0, watchOS 4.0, *)
 extension Device.BatteryState: Comparable {
@@ -988,7 +1345,7 @@ extension Device.BatteryState: Comparable {
 
 #if os(iOS)
 extension Device {
-  // MARK: Orientation
+  // MARK: - Orientation
     /**
       This enum describes the state of the orientation.
       - Landscape: The device is in Landscape Orientation
@@ -1010,7 +1367,7 @@ extension Device {
 #endif
 
 #if os(iOS)
-// MARK: DiskSpace
+// MARK: - DiskSpace
 extension Device {
 
   /// Return the root url
@@ -1066,7 +1423,7 @@ extension Device {
 #endif
 
 #if os(iOS)
-// MARK: Apple Pencil
+// MARK: - Apple Pencil
 extension Device {
 
   /**
@@ -1100,7 +1457,6 @@ extension Device {
   % for device in list(filter(lambda device: device.applePencilSupport == 2, iOSDevices)):
       case .${device.caseName}: return .secondGeneration
   % end
-      case .simulator(let model): return model.applePencilSupport
       default: return []
     }
   }
@@ -1108,23 +1464,20 @@ extension Device {
 #endif
 
 #if os(iOS)
-// MARK: Cameras
+// MARK: - Cameras
 extension Device {
 
-  public enum CameraType {
-    @available(*, deprecated, renamed: "wide")
+  public enum CameraTypes {
     case normal
-
-    case wide
     case telephoto
     case ultraWide
   }
 
   /// Returns an array of the types of cameras the device has
-  public var cameras: [CameraType] {
+  public var cameras: [CameraTypes] {
     switch self {
   % for device in list(filter(lambda device: device.cameras == 1, iOSDevices)):
-      case .${device.caseName}: return [.wide]
+      case .${device.caseName}: return [.normal]
   % end
   % for device in list(filter(lambda device: device.cameras == 2, iOSDevices)):
     case .${device.caseName}: return [.telephoto]
@@ -1133,16 +1486,13 @@ extension Device {
     case .${device.caseName}: return [.ultraWide]
   % end
   % for device in list(filter(lambda device: device.cameras == 12, iOSDevices)):
-      case .${device.caseName}: return [.wide, .telephoto]
+      case .${device.caseName}: return [.normal, .telephoto]
   % end
   % for device in list(filter(lambda device: device.cameras == 13, iOSDevices)):
-      case .${device.caseName}: return [.wide, .ultraWide]
-  % end
-  % for device in list(filter(lambda device: device.cameras == 23, iOSDevices)):
-      case .${device.caseName}: return [.telephoto, .ultraWide]
+      case .${device.caseName}: return [.normal, .ultraWide]
   % end
   % for device in list(filter(lambda device: device.cameras == 123, iOSDevices)):
-      case .${device.caseName}: return [.wide, .telephoto, .ultraWide]
+      case .${device.caseName}: return [.normal, .telephoto, .ultraWide]
   % end
       default: return []
     }
@@ -1154,13 +1504,7 @@ extension Device {
   }
 
   /// All devices that feature a normal camera
-  @available(*, deprecated, renamed: "allDevicesWithWideCamera")
   public static var allDevicesWithNormalCamera: [Device] {
-    return Device.allDevicesWithWideCamera
-  }
-
-  /// All devices that feature a wide camera
-  public static var allDevicesWithWideCamera: [Device] {
     return [${', '.join(list(map(lambda device: "." + device.caseName, list(filter(lambda device: device.cameras == 1 or device.cameras == 12 or device.cameras == 13 or device.cameras == 123, iOSDevices)))))}]
   }
 
@@ -1180,14 +1524,8 @@ extension Device {
   }
 
   /// Returns whether or not the current device has a normal camera
-  @available(*, deprecated, renamed: "hasWideCamera")
   public var hasNormalCamera: Bool {
-    return self.hasWideCamera
-  }
-
-  /// Returns whether or not the current device has a wide camera
-  public var hasWideCamera: Bool {
-    return self.cameras.contains(.wide)
+    return self.cameras.contains(.normal)
   }
 
   /// Returns whether or not the current device has a telephoto camera
@@ -1200,5 +1538,27 @@ extension Device {
     return self.cameras.contains(.ultraWide)
   }
 
+}
+#endif
+
+#if os(macOS)
+private func sysctlData(for keys: [Int32]) throws -> [Int8] {
+    return try keys.withUnsafeBufferPointer { keysPointer -> [Int8] in
+        // Get the data size
+        var requiredSize = 0
+        var result = Darwin.sysctl(UnsafeMutablePointer<Int32>(mutating: keysPointer.baseAddress), UInt32(keys.count), nil, &requiredSize, nil, 0)
+        if result != 0, let code = POSIXErrorCode(rawValue: errno) {
+            throw POSIXError(code)
+        }
+        // get info
+        let data = [Int8](repeating: 0, count: requiredSize)
+        result = data.withUnsafeBufferPointer { dataBuffer -> Int32 in
+            Darwin.sysctl(UnsafeMutablePointer<Int32>(mutating: keysPointer.baseAddress), UInt32(keys.count), UnsafeMutableRawPointer(mutating: dataBuffer.baseAddress), &requiredSize, nil, 0)
+        }
+        if result != 0, let code = POSIXErrorCode(rawValue: errno) {
+            throw POSIXError(code)
+        }
+        return data
+    }
 }
 #endif
